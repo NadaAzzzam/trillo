@@ -1,12 +1,16 @@
+import MainFooter from "./main-footer";
 import MainHeader from "./main-header";
 
 export default function Layouts(props) {
     return(
         <>
-        <MainHeader/>
-        <main>
+        {/* HEADER CONTENT */}
+        <MainHeader>
+            {/* MAIN CONTENT */}
             {props.children}
-        </main>
+        </MainHeader>
+        {/* FOOTER CONTENT */}
+        <MainFooter/>
         </>
     )
     

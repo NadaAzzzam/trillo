@@ -7,9 +7,14 @@
 }
 
 .header {
+  font-size: 1.4rem;
   height: 7rem;
   background-color: #fff;
   border-bottom: var(--color-grey-light-2);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content {
@@ -24,6 +29,6 @@
 .hotel-view {
   background-color: #fff;
   flex: 1; //it will grow as it much as it can, it occupying the remaining 82% OF flexbox
-
+  height: 80rem;
   background-color: orangered;
 }
