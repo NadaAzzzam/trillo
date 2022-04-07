@@ -1,17 +1,41 @@
 import headerClasses from "./main-header.module.scss";
 import Image from "next/image";
 import layoutClasses from "./layout.module.scss";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function MainHeader(props) {
+  const router = useRouter();
+
   const navListState = [
-    { name: "hotel", icon: "/img/sprite.svg#icon-home", link: "" },
-    { name: "flight", icon: "/img/sprite.svg#icon-aircraft-take-off", link: "" },
-    { name: "car rental", icon: "/img/sprite.svg#icon-key", link: "" },
-    { name: "tours", icon: "/img/sprite.svg#icon-map", link: "" },
+    {
+      name: "hotel",
+      icon: "/img/sprite.svg#icon-home",
+      link: "/",
+      isEnabled: true,
+    },
+    {
+      name: "flight",
+      icon: "/img/sprite.svg#icon-aircraft-take-off",
+      link: "/flight",
+      isEnabled: false,
+    },
+    {
+      name: "car rental",
+      icon: "/img/sprite.svg#icon-key",
+      link: "/car-rental",
+      isEnabled: false,
+    },
+    {
+      name: "tours",
+      icon: "/img/sprite.svg#icon-map",
+      link: "/tours",
+      isEnabled: false,
+    },
   ];
 
   return (
-    // CONTAINER 
+    // CONTAINER
     <div className={layoutClasses.container}>
       {/* HEADER SECTION */}
       <header className={layoutClasses.header}>
@@ -70,32 +94,40 @@ export default function MainHeader(props) {
       <div className={layoutClasses.content}>
         {/* SIDEBAR SECTION */}
         <nav className={layoutClasses.sidebar}>
-          <ul className={layoutClasses["side-nav"]}>
-            {navListState.map((e,i)=>{
-             return (<>
-               <li key={i} className={layoutClasses["side-nav_item"]}>
-              <a href="#" className={layoutClasses["side-nav_link"]}>
-                <svg className={headerClasses["side-nav__icon"]}>
-                  <use xlinkHref={e.icon}></use>
-                </svg>
-                <span>{e.name}</span>
-              </a>
-            </li>
-              </>)
+          <ul className={headerClasses["side-nav"]}>
+            {navListState.map((e, i) => {
+              return (
+                <li
+                  
+                  className={`${headerClasses["side-nav__item"]} ${
+                    router.pathname == e.link
+                      ? headerClasses["side-nav__item--active"]
+                      : ""
+                  }`}
+                  key={i.toString()}
+                >
+                  <Link href={e.isEnabled ? e.link : "/"}>
+                    <a className={headerClasses["side-nav__link"]}>
+                      <svg className={headerClasses["side-nav__icon"]}>
+                        <use xlinkHref={e.icon}></use>
+                      </svg>
+
+                      <span>{e.name}</span>
+                    </a>
+                  </Link>
+                </li>
+              );
             })}
-           
           </ul>
           <div className={headerClasses.legal}>
             &copy; 2022 by Nada Ayman Azzam. All rights reserved.
           </div>
         </nav>
-      {/* END OF SIDEBAR SECTION */}
-
+        {/* END OF SIDEBAR SECTION */}
 
         {/* MAIN SECTION */}
         <main className={layoutClasses["hotel-view"]}>{props.children}</main>
-      {/* END OF MAIN SECTION */}
-
+        {/* END OF MAIN SECTION */}
       </div>
     </div>
     // END OF CONTAINER
