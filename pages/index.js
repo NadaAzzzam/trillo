@@ -13,31 +13,28 @@ export default function Home() {
 
       <div className={homeClass.gallery}>
         <figure className={homeClass["gallery__item"]}>
-          <Image
+          <img
             className={homeClass["gallery__photo"]}
-            layout="fill"
-            objectFit="contain"
+           
             src="/img/hotel-1.jpg"
             alt="User Photo"
-          ></Image>
+          />
         </figure>
         <figure className={homeClass["gallery__item"]}>
-          <Image
+          <img
             className={homeClass["gallery__photo"]}
-            layout="fill"
-            objectFit="contain"
+           
             src="/img/hotel-2.jpg"
             alt="User Photo"
-          ></Image>
+          />
         </figure>
         <figure className={homeClass["gallery__item"]}>
-          <Image
+          <img
             className={homeClass["gallery__photo"]}
-            layout="fill"
-            objectFit="contain"
+           
             src="/img/hotel-3.jpg"
             alt="User Photo"
-          ></Image>
+          />
         </figure>
       </div>
 
